@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState } from "react";
 import threeJS from "../public/threejs.png";
 
-const Context = createContext();
+const Context = createContext({});
 
 export const StateContext = ({ children }) => {
   const [intro, setIntro] = useState(true);

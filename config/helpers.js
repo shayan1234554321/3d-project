@@ -18,8 +18,16 @@ export const reader = (file) =>
   });
 
 export const getContrastingColor = (color) => {
+  if(!color){
+    return "#EFBD48"
+  }
   // Remove the '#' character if it exists
-  const hex = color.replace("#", "");
+  let hex = ""
+  if(color && color[0] === "#"){
+    hex = color.slice(1)
+  }else{
+    hex = color
+  }
 
   // Convert the hex string to RGB values
   const r = parseInt(hex.substring(0, 2), 16);

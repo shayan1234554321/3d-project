@@ -84,10 +84,12 @@ const Customizer = () => {
   };
 
   const readFile = (type) => {
-    reader(file).then((result) => {
-      handleDecals(type, result);
-      setActiveEditorTab("");
-    });
+    if(file){
+      reader(file).then((result) => {
+        handleDecals(type, result);
+        setActiveEditorTab("");
+      });
+    }
   };
 
   return (
