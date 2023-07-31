@@ -59,9 +59,9 @@
 
 <a href="https://3d-project-qrui.vercel.app/">Live demo</a>
 
-## 🚀 Live Demo <a name="video-demo"></a>
+## 🚀 Video Demo <a name="video-demo"></a>
 
-<a href="https://drive.google.com/file/d/1tKjKqU8tPOpKfcA4chwxM_ZGJFcYVQXu/view?usp=sharing">Live demo</a>
+<a href="https://drive.google.com/file/d/1tKjKqU8tPOpKfcA4chwxM_ZGJFcYVQXu/view?usp=sharing">Video demo</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
