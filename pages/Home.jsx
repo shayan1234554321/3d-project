@@ -31,7 +31,7 @@ const Home = () => {
               className="flex flex-col gap-5"
             >
               <p className="max-w-md font-normal text-white opacity-50 text-base">
-                Design your custom, one-of-a-kind tee using our cutting-edge{" "}
+                Design your custom, one-of-a-kind shirt using our cutting-edge{" "}
                 <strong>3D personalization</strong> feature. Explore your
                 creativity and shape your distinctive fashion.
               </p>
