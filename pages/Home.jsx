@@ -6,7 +6,7 @@ import {
   headTextAnimation,
   slideAnimation,
 } from "../config/motion";
-import { useStateContext } from "@/context/stateContext";
+import { useStateContext } from "../context/stateContext";
 import logo from "@/assets/logo.png";
 
 const Home = () => {
