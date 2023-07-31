@@ -5,7 +5,7 @@ import { Decal, useGLTF, useTexture } from "@react-three/drei";
 import { useStateContext } from "@/context/stateContext";
 
 const Shirt = () => {
-  const { logoDecal, fullDecal, isFullTexture, isLogoTexture , color } =
+  const { logoDecal, fullDecal, isFullTexture, isLogoTexture, color } =
     useStateContext();
   const { nodes, materials } = useGLTF("/shirt_baked.glb");
 

@@ -1,9 +1,8 @@
-"use client"
+"use client";
 
-import CanvasModel from '@/canvas';
-import Customizer from '@/pages/Customizer';
-import Home from '@/pages/Home';
-
+import CanvasModel from "@/canvas";
+import Customizer from "@/pages/Customizer";
+import Home from "@/pages/Home";
 
 function App() {
   return (
@@ -12,7 +11,7 @@ function App() {
       <CanvasModel />
       <Customizer />
     </main>
-  )
+  );
 }
 
-export default App
+export default App;

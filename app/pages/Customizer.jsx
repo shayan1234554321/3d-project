@@ -1,26 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import config from "../config/config";
-import { download } from "../assets";
 import { downloadCanvasToImage, reader } from "../config/helpers";
 import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants";
 import { fadeAnimation, slideAnimation } from "../config/motion";
-import {
-  AIPicker,
-  ColorPicker,
-  CustomButton,
-  FilePicker,
-  Tab,
-} from "../components";
+import { ColorPicker, CustomButton, FilePicker, Tab } from "../components";
 import { useStateContext } from "@/context/stateContext";
 
 const Customizer = () => {
-  const { intro, setIntro } = useStateContext();
+  const {
+    intro,
+    setIntro,
+    setIsLogoTexture,
+    setIsFullTexture,
+    setLogoDecal,
+    setFullDecal,
+  } = useStateContext();
 
   const [file, setFile] = useState("");
-
-  const [prompt, setPrompt] = useState("");
-  const [generatingImg, setGeneratingImg] = useState(false);
 
   const [activeEditorTab, setActiveEditorTab] = useState("");
   const [activeFilterTab, setActiveFilterTab] = useState({
@@ -33,21 +29,66 @@ const Customizer = () => {
       case "colorpicker":
         return <ColorPicker />;
       case "filepicker":
-        return <FilePicker />;
-      case "aipicker":
-        return <AIPicker />;
+        return <FilePicker file={file} setFile={setFile} readFile={readFile} />;
       default:
         return null;
     }
   };
 
-  const handleSubmit = async (type) => {};
+  const handleDecals = (type, result) => {
+    const decalType = DecalTypes[type];
 
-  const handleDecals = (type, result) => {};
+    if (decalType.stateProperty == "logoDecal") {
+      setLogoDecal(result);
+    } else {
+      setFullDecal(result);
+    }
 
-  const handleActiveFilterTab = (tabName) => {};
+    if (!activeFilterTab[decalType.filterTab]) {
+      handleActiveFilterTab(decalType.filterTab);
+    }
+  };
 
-  const readFile = (type) => {};
+  const handleActiveEditorChange = (tab) => {
+    if (activeEditorTab === tab.name) {
+      setActiveEditorTab("");
+    } else {
+      setActiveEditorTab(tab.name);
+    }
+  };
+
+  const handleActiveFilterTab = (tabName) => {
+    switch (tabName) {
+      case "logoShirt":
+        setIsLogoTexture(!activeFilterTab[tabName]);
+        break;
+      case "stylishShirt":
+        setIsFullTexture(!activeFilterTab[tabName]);
+        break;
+      case "downloadImage":
+        downloadCanvasToImage();
+        break;
+      default:
+        setIsLogoTexture(true);
+        setIsFullTexture(false);
+        break;
+    }
+
+    if (tabName !== "downloadImage")
+      setActiveFilterTab((prevState) => {
+        return {
+          ...prevState,
+          [tabName]: !prevState[tabName],
+        };
+      });
+  };
+
+  const readFile = (type) => {
+    reader(file).then((result) => {
+      handleDecals(type, result);
+      setActiveEditorTab("");
+    });
+  };
 
   return (
     <AnimatePresence>
@@ -64,7 +105,7 @@ const Customizer = () => {
                   <Tab
                     key={tab.name}
                     tab={tab}
-                    handleClick={() => setActiveEditorTab(tab.name)}
+                    handleClick={() => handleActiveEditorChange(tab)}
                   />
                 ))}
 
